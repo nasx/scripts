@@ -2,7 +2,7 @@
 # Chris Keller <chris@umbrellalabs.net>
 # 
 # Route 53 dynamic DNS updater will attempt to find a systems public IP by polling a URL that outputs REMOTE_ADDR only. 
-# once discovered, the public IP is validated for syntax and the applicable DNS entry is updated w/ boto
+# Once discovered, the public IP is validated for syntax and the applicable DNS entry is updated w/ boto.
 #
 # URL that outputs REMOTE_ADDR consists of the following PHP code:
 # <?php echo $_SERvER['REMOTE_ADDR']; ?>
@@ -40,7 +40,7 @@ curl_buffer = StringIO()
 c = pycurl.Curl()
 
 c.setopt(c.URL, reflector_url)
-c.setopt(c.WRITEDATA, curl_buffer)
+c.setopt(c.WRITEFUNCTION, curl_buffer.write)
 c.perform()
 c.close()
 
